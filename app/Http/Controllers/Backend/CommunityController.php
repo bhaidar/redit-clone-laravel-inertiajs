@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommunityStoreRequest;
+use App\Http\Requests\CommunityUpdateRequest;
 use App\Models\Community;
 use Inertia\Inertia;
 
@@ -77,7 +78,7 @@ class CommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CommunityStoreRequest $request, Community $community)
+    public function update(CommunityUpdateRequest $request, Community $community)
     {
         $community->update($request->validated());
 

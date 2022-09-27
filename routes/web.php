@@ -19,7 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('/communities', CommunityController::class);
+    Route::resource('/dashboard/communities', CommunityController::class);
 });
 
 require __DIR__.'/auth.php';
