@@ -68,7 +68,8 @@ defineProps({
                                                     "
                                                         class="text-blue-500 hover:text-blue-700 font-semibold">
                                                     {{ community.name }}
-                                                    </Link> -->Link
+                                                    </Link> -->{{
+                                                    community.name }}
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
