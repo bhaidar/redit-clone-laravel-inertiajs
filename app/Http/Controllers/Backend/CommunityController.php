@@ -77,7 +77,7 @@ class CommunityController extends Controller
     {
         $community->update($request->validated());
 
-        return to_route('communities.index')->with('message', 'Community updated successfully.');
+        return to_route('communities.index')->withMessage('Community updated successfully.');
     }
 
     /**
