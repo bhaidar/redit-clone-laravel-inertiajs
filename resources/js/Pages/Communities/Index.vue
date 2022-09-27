@@ -61,16 +61,15 @@ defineProps({
                                                 :key="community.id">
                                                 <td
                                                     class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                    <!-- <Link :href="
+                                                    <Link :href="
                                                       route(
-                                                        'frontend.communities.show',
+                                                        'subreddit.show',
                                                         community.slug
                                                       )
                                                     "
                                                         class="text-blue-500 hover:text-blue-700 font-semibold">
                                                     {{ community.name }}
-                                                    </Link> -->{{
-                                                    community.name }}
+                                                    </Link>
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
