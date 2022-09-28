@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CommunityController;
+use App\Http\Controllers\Backend\CommunityPostController;
 use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::resource('/dashboard/communities', CommunityController::class);
+
+    // Nested resources
+    // https://laravel.com/docs/9.x/controllers#restful-nested-resources
+    Route::resource('/dashboard/communities.posts', CommunityPostController::class);
 });
 
 require __DIR__.'/auth.php';
