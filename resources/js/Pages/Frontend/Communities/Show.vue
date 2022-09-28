@@ -1,11 +1,11 @@
 <template>
     <h1>Subreddit Show Page</h1>
-    {{ subreddit }}
+    {{ community }}
 </template>
 
 <script setup>
 defineProps({
-    subreddit: Object,
+    community: Object,
 });
 </script>
 
