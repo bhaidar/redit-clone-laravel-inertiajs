@@ -16,7 +16,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/r/{slug}', [FrontendCommunityController::class, '__invoke'])->name('community.show');
+Route::get('/r/{slug}', [FrontendCommunityController::class, '__invoke'])->name('frontend.communities.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

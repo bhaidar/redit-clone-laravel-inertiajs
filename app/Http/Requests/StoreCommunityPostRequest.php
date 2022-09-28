@@ -13,7 +13,7 @@ class StoreCommunityPostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreCommunityPostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'unique:posts'],
+            'url' => ['nullable', 'url'], // not required
+            'description' => ['required', 'min:5'],
         ];
     }
 }
