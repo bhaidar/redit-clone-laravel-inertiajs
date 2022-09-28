@@ -24,7 +24,7 @@
                 </div>
             </div>
             <Link
-                :href="route('frontend.posts.show', [community.slug, post.slug])">
+                :href="route('frontend.communities.posts.show', [community.slug, post.slug])">
             <h5 class="
                 my-4
                 text-2xl

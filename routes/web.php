@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/r/{community:slug}', [FrontendCommunityController::class, 'show'])->name('frontend.communities.show');
-Route::get('/r/{community:slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.posts.show');
+Route::get('/r/{community:slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.communities.posts.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
