@@ -11,9 +11,17 @@
             </div>
         </template>
 
-        <section class="p-2 m-2">
-            <PostCard v-for="post in posts.data" :key="post.id" :post="post"
-                :community="community" />
+        <section class="flex md:flex-row p-2 m-2">
+            <div class="w-8/12">
+                <PostCard v-for="(post, idx) in posts.data" :key="post.id"
+                    :post="post" :community="community"
+                    :class="{ 'mt-4' : idx > 0 }" />
+            </div>
+            <div class="w-4/12 p-2 ml-4">
+                <div class="p-2 bg-slate-500 text-white">
+                    <h2>Latest Communities</h2>
+                </div>
+            </div>
         </section>
 
     </GuestLayout>

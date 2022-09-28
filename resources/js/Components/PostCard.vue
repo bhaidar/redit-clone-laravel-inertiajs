@@ -1,6 +1,5 @@
 <template>
     <div class="
-        mt-4
         max-w-4xl
         flex
         bg-white
