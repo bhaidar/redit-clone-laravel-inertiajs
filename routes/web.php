@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CommunityController;
 use App\Http\Controllers\Backend\CommunityPostController;
 use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
+use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,7 +17,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/r/{slug}', [FrontendCommunityController::class, '__invoke'])->name('frontend.communities.show');
+Route::get('/r/{community:slug}', [FrontendCommunityController::class, 'show'])->name('frontend.communities.show');
+Route::get('/r/{community:slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.posts.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

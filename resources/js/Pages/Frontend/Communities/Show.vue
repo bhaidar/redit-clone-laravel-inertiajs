@@ -15,8 +15,8 @@
             <div class="w-8/12">
                 <PostCard v-for="(post, idx) in posts.data" :key="post.id"
                     :post="post" :community="community"
-                    :class="{ 'mt-4' : idx > 0 }" />
-                <div class="mt-4 p-2">
+                    :class="{ 'mt-6' : idx > 0 }" />
+                <div class="mt-4 p-2" v-if="hasPosts">
                     <Pagination :links="posts.meta.links" />
                 </div>
             </div>
@@ -31,15 +31,18 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import NavLink from "@/Components/NavLink.vue";
 import PostCard from "@/Components/PostCard.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import Pagination from "@/Components/Pagination.vue";
 
-defineProps({
+const props = defineProps({
     community: Object,
     posts: Object,
 });
+
+const hasPosts = computed(() => props.posts?.data.length > 0);
 </script>
 
 <style>

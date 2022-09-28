@@ -8,25 +8,25 @@
         shadow-md
         dark:bg-gray-800 dark:border-gray-700
       ">
-        <div class="mr-3 m-4">
+        <div class="mr-3">
             <!-- <PostVote :post="post" /> -->
             upvote
         </div>
         <div class="w-full">
-            <div class="flex m-2 p-2 text-sm">
-                <NavLink
+            <div class="flex mt-1 text-sm">
+                <NavLink class="font-bold text-slate-800"
                     :href="route('frontend.communities.show', community.slug)">
                     r/{{ community.name }}</NavLink>
-                <div class="ml-2 mt-1">
+                <div class="ml-2 mt-1 text-slate-400">
                     Posted by
-                    <span class="font-semibold mx-1">{{ post.username }}</span>
+                    <span>{{ post.username }}</span>
                     {{ post.created_at }}
                 </div>
             </div>
-            <!-- route('frontend.communities.posts.show', [community, post.slug]) -->
-            <Link href="">
+            <Link
+                :href="route('frontend.posts.show', [community.slug, post.slug])">
             <h5 class="
-                mb-2
+                my-4
                 text-2xl
                 font-bold
                 tracking-tight
@@ -37,7 +37,7 @@
                 {{ post.title }}
             </h5>
             </Link>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p class="mb-6 pr-2 font-normal text-gray-700 dark:text-gray-400">
                 {{ post.description }}
             </p>
             <!-- <div class="flex m-2 p-2">

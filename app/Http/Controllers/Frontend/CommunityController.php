@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class CommunityController extends Controller
 {
-    public function __invoke(string $slug)
+    public function show(string $slug)
     {
         $community = Community::query()->where('slug', $slug)->first();
         $posts = CommunityPostResource::collection($community->posts()->with('user')->paginate(2));
