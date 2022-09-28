@@ -16,6 +16,9 @@
                 <PostCard v-for="(post, idx) in posts.data" :key="post.id"
                     :post="post" :community="community"
                     :class="{ 'mt-4' : idx > 0 }" />
+                <div class="mt-4 p-2">
+                    <Pagination :links="posts.meta.links" />
+                </div>
             </div>
             <div class="w-4/12 p-2 ml-4">
                 <div class="p-2 bg-slate-500 text-white">
@@ -31,6 +34,7 @@
 import NavLink from "@/Components/NavLink.vue";
 import PostCard from "@/Components/PostCard.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 defineProps({
     community: Object,
