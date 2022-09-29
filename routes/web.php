@@ -21,15 +21,11 @@ Route::get('/r/{community:slug}', [FrontendCommunityController::class, 'show'])-
 Route::get('/r/{community:slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.communities.posts.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-    Route::resource('/dashboard/communities', CommunityController::class);
+    Route::resource('/communities', CommunityController::class);
 
     // Nested resources
     // https://laravel.com/docs/9.x/controllers#restful-nested-resources
-    Route::resource('/dashboard/communities.posts', CommunityPostController::class);
+    Route::resource('/communities.posts', CommunityPostController::class);
 });
 
 require __DIR__.'/auth.php';
