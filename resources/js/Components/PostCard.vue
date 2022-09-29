@@ -14,7 +14,7 @@
         </div>
         <div class="w-full">
             <div class="flex mt-1 text-sm">
-                <NavLink class="font-bold text-slate-800"
+                <NavLink class="font-bold text-slate-800 hover:border-white"
                     :href="route('frontend.communities.show', community.slug)">
                     r/{{ community.name }}</NavLink>
                 <div class="ml-2 mt-1 text-slate-400">
