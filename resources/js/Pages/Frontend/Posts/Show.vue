@@ -17,14 +17,13 @@
                             Posted by <span class="ml-1 text-slate-700">{{
                             postData.username }}</span>
                         </div>
-                        <div>
-                            <NavLink
-                                class="font-semibold text-blue-500 hover:text-blue-700 hover:border-white"
+                        <div v-if="postData.is_owner">
+                            <NavLink class=""
                                 :href="route('communities.posts.edit', [community, postData])">
                                 Edit
                             </NavLink>
-                            <NavLink
-                                class="font-semibold text-red-500 hover:text-red-700 hover:border-white"
+                            <NavLink class="ml-2" method="delete" as="button"
+                                type="button"
                                 :href="route('communities.posts.destroy', [community, postData])">
                                 Delete
                             </NavLink>

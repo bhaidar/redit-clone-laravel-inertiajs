@@ -21,6 +21,11 @@ class Post extends Model
         'votes',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *
