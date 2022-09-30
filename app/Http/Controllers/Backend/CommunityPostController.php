@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCommunityPostRequest;
 use App\Models\Community;
 use App\Models\Post;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class CommunityPostController extends Controller
 {
@@ -25,11 +26,15 @@ class CommunityPostController extends Controller
 
     public function edit(Community $community, Post $post)
     {
+        abort_if(request()->user()->cannot('update', $post), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return Inertia::render('Communities/Posts/Edit', compact('community', 'post'));
     }
 
     public function update(CommunityPostUpdateRequest $request, Community $community, Post $post)
     {
+        abort_if(request()->user()->cannot('update', $post), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $post->update($request->validated());
 
         return to_route('frontend.communities.posts.show', [$community, $post])->withMessage('Post updated successfully.');
@@ -37,6 +42,8 @@ class CommunityPostController extends Controller
 
     public function destroy(Community $community, Post $post)
     {
+        abort_if(request()->user()->cannot('delete', $post), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $post->delete();
 
         return to_route('frontend.communities.show', [$community, $post])->withMessage('Post deleted successfully.');
