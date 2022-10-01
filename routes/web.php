@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CommunityController;
 use App\Http\Controllers\Backend\CommunityPostController;
 use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
+use App\Http\Controllers\Frontend\PostCommentController;
 use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('/r/{community:slug}', [FrontendCommunityController::class, 'show'])->name('frontend.communities.show');
 Route::get('/r/{community:slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.communities.posts.show');
+Route::post('/r/{community:slug}/posts/{post:slug}/comments', [PostCommentController::class, 'store'])->name('frontend.posts.comments');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/communities', CommunityController::class);

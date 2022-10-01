@@ -12,7 +12,8 @@ class PostController extends Controller
 {
     public function show(Community $community, Post $post)
     {
-        $post = new PostShowResource($post->load('user'));
+        $post = $post->load('user:id,username', 'comments:id,user_id,post_id,content', 'comments.user:id,username');
+        $post = new PostShowResource($post);
 
         return Inertia::render('Frontend/Posts/Show', compact('community', 'post'));
     }
