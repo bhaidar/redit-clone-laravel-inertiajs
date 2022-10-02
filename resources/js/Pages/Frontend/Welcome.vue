@@ -7,9 +7,9 @@
                     :class="{ 'mt-6': index > 0 }" />
             </div>
             <div class=" w-4/12 p-4">
-                <!-- <CommunityList :communit ies="communities.data">
+                <CommunityList :communities="communities.data">
                     <template #title>Top communities</template>
-                </CommunityList> -->
+                </CommunityList>
             </div>
         </section>
     </GuestLayout>
@@ -19,7 +19,7 @@
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import PostCard from "@/Components/PostCard.vue";
 import Pagination from "@/Components/Pagination.vue";
-// import CommunityList from "@/Components/CommunityList.vue";
+import CommunityList from "@/Components/CommunityList.vue";
 defineProps({
     communities: Object,
     posts: Object,
