@@ -1,12 +1,14 @@
 <script setup>
 import { computed } from "vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Link, useForm } from '@inertiajs/inertia-vue3';
-import PostVote from '@/Components/PostVote.vue';
+import { Link, useForm } from "@inertiajs/inertia-vue3";
+import PostVote from "@/Components/PostVote.vue";
+import PostList from "@/Components/PostList.vue";
 
 const props = defineProps({
     community: Object,
     post: Object,
+    posts: Object,
 });
 
 const postData = computed(() => props.post.data);
@@ -158,11 +160,11 @@ const submit = () => {
                     </div>
                 </div>
             </div>
-            <!-- <div class="w-full md:w-4/12">
+            <div class="w-full md:w-4/12 p-0 ml-4">
                 <PostList :posts="posts.data" :community="community">
                     <template #title>Popular Posts</template>
                 </PostList>
-            </div> -->
+            </div>
         </section>
     </GuestLayout>
 </template>

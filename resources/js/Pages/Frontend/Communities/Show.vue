@@ -37,7 +37,7 @@ const hasPosts = computed(() => props.posts?.data.length > 0);
                     <Pagination :links="posts.meta.links" />
                 </div>
             </div>
-            <div class="w-4/12 p-2 ml-4">
+            <div class="w-4/12 p-0 ml-4">
                 <div>
                     <h2 class="
               font-semibold
