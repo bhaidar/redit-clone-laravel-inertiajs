@@ -48,7 +48,7 @@ const submit = () => {
                             class="flex flex-col md:flex-row justify-between m-2">
                             <div>
                                 Posted by
-                                <span class="mx-2 text-slate-700">{{
+                                <span class="mx-1 text-slate-700">{{
                                 postData.username
                                 }}</span>
                                 {{ post.data.created_at }}
