@@ -21,7 +21,7 @@ class WelcomeController extends Controller
                         ->select('id', 'user_id', 'post_id', 'vote');
                 },
             ]
-        )->orderBy('votes', 'desc')->take(12)->get());
+        )->withCount('comments')->orderBy('votes', 'desc')->take(12)->get());
 
         return Inertia::render('Frontend/Welcome', compact('posts'));
     }

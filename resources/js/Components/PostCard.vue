@@ -50,10 +50,10 @@ defineProps({
             <p class="mb-6 pr-2 font-normal text-gray-700 dark:text-gray-400">
                 {{ post.description }}
             </p>
-            <!-- <div class="flex m-2 p-2">
+            <div class="flex m-2 p-2">
                 <p class="mr-4 p-2">Comments({{ post.comments_count }})</p>
                 <Link :href="
-                  route('frontend.communities.posts.show', [community, post.slug])
+                  route('frontend.communities.posts.show', [community, post])
                 " class="
               inline-flex
               items-center
@@ -77,7 +77,7 @@ defineProps({
                         clip-rule="evenodd"></path>
                 </svg>
                 </Link>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>

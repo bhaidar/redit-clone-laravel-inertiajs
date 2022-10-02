@@ -7,7 +7,7 @@
                     :class="{ 'mt-6': index > 0 }" />
             </div>
             <div class=" w-4/12 p-4">
-                <!-- <CommunityList :communities="communities.data">
+                <!-- <CommunityList :communit ies="communities.data">
                     <template #title>Top communities</template>
                 </CommunityList> -->
             </div>
