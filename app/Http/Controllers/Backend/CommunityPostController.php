@@ -21,7 +21,7 @@ class CommunityPostController extends Controller
     {
         $community->posts()->create($request->validated() + ['user_id' => auth()->id()]);
 
-        return to_route('frontend.communities.show', $community->slug)->withMessage('Post created successfully');
+        return to_route('frontend.communities.show', $community)->withMessage('Post created successfully');
     }
 
     public function edit(Community $community, Post $post)

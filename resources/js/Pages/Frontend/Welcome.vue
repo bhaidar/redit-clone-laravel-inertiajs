@@ -1,0 +1,27 @@
+<template>
+    <GuestLayout>
+        <section class="flex md:flex-row m-2 p-2">
+            <div class="w-8/12">
+                <PostCard v-for="(post, index) in posts.data" :post="post"
+                    :community="post.community_slug" :key="post.id"
+                    :class="{ 'mt-6': index > 0 }" />
+            </div>
+            <div class=" w-4/12 p-4">
+                <!-- <CommunityList :communities="communities.data">
+                    <template #title>Top communities</template>
+                </CommunityList> -->
+            </div>
+        </section>
+    </GuestLayout>
+</template>
+
+<script setup>
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import PostCard from "@/Components/PostCard.vue";
+import Pagination from "@/Components/Pagination.vue";
+// import CommunityList from "@/Components/CommunityList.vue";
+defineProps({
+    communities: Object,
+    posts: Object,
+});
+</script>
