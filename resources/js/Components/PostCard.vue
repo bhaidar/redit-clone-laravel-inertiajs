@@ -1,3 +1,14 @@
+<script setup>
+import { Link } from "@inertiajs/inertia-vue3";
+import NavLink from "@/Components/NavLink.vue";
+import PostVote from "./PostVote.vue";
+
+defineProps({
+    post: Object,
+    community: String,
+});
+</script>
+
 <template>
     <div class="
         max-w-4xl
@@ -23,7 +34,7 @@
                 </div>
             </div>
             <Link
-                :href="route('frontend.communities.posts.show', [community.slug, post.slug])">
+                :href="route('frontend.communities.posts.show', [community, post])">
             <h5 class="
                 my-4
                 text-2xl
@@ -70,14 +81,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-import NavLink from "@/Components/NavLink.vue";
-import PostVote from "./PostVote.vue";
-
-defineProps({
-    post: Object,
-    community: String,
-});
-</script>
