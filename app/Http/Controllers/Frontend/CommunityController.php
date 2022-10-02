@@ -21,7 +21,7 @@ class CommunityController extends Controller
                         ->select('id', 'user_id', 'post_id', 'vote');
                 },
             ]
-        )->paginate(2));
+        )->withCount('comments')->paginate(2));
 
         return Inertia::render('Frontend/Communities/Show', compact('community', 'posts'));
     }

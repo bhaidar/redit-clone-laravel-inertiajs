@@ -26,7 +26,7 @@ defineProps({
             <div class="flex mt-1 text-sm">
                 <NavLink class="font-bold text-slate-800 hover:border-white"
                     :href="route('frontend.communities.show', community)">
-                    r/{{ community.name }}</NavLink>
+                    r/{{ community }}</NavLink>
                 <div class="ml-2 mt-1 text-slate-400">
                     Posted by
                     <span>{{ post.username }}</span>
