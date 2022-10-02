@@ -51,7 +51,8 @@ const submit = () => {
                                 }}</span>
                                 {{ post.data.created_at }}
                             </div>
-                            <div v-if="$page.props.auth.auth_check">
+                            <div
+                                v-if="$page.props.auth.auth_check && postData.is_owner">
                                 <Link :href="
                                   route('communities.posts.edit', [
                                     community,
