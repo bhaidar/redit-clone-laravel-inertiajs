@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from "vue";
-import NavLink from "@/Components/NavLink.vue";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { useForm } from '@inertiajs/inertia-vue3';
+import { Link, useForm } from '@inertiajs/inertia-vue3';
+import PostVote from '@/Components/PostVote.vue';
 
 const props = defineProps({
     community: Object,
@@ -24,68 +24,97 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <section class="flex flex-col md:flex-row p-2 m-2">
+        <section class="flex flex-col md:flex-row m-2 p-2">
             <div class="w-full md:w-8/12">
-                <div class="p-1 md:m-2 bg-white">
-                    <NavLink
-                        class="font-semibold text-2xl text-black hover:border-white"
-                        :href="route('frontend.communities.show', community)">
-                        <h2 class="">
-                            r/{{ community.name }}
-                        </h2>
-                    </NavLink>
+                <div class="mx-2 p-2 bg-white rounded-lg">
+                    <h2 class="font-semibold text-2xl text-black">
+                        <Link
+                            :href="route('frontend.communities.show', community)">
+                        r/{{ community.name }}
+                        </Link>
+                    </h2>
                 </div>
-                <div class="p-2 md:mx-2 my-2 bg-white text-sm text-slate-400">
-                    <div class="flex flex-col justify-between md:flex-row">
-                        <div>
-                            Posted by <span class="ml-1 text-slate-700">{{
-                            postData.username }}</span>
-                        </div>
-                        <div v-if="postData.is_owner">
-                            <NavLink class=""
-                                :href="route('communities.posts.edit', [community, postData])">
-                                Edit
-                            </NavLink>
-                            <NavLink class="ml-2" method="delete" as="button"
-                                type="button"
-                                :href="route('communities.posts.destroy', [community, postData])">
-                                Delete
-                            </NavLink>
-                        </div>
+                <div
+                    class="flex m-2 bg-white rounded-lg text-sm text-slate-400">
+                    <div>
+                        <PostVote :post="postData" />
                     </div>
-                    <h1 class="font-semibold text-3xl text-black">
-                        {{ postData.title }}
-                    </h1>
-                    <p class="text-slate-400 my-2">{{ postData.description
-                    }}
-                    </p>
-                    <a class="font-semibold mb-2 text-blue-500 text-sm hover:border-white hover:text-blue-300"
-                        :href="postData.url">
-                        {{ postData.url }}
-                    </a>
-                </div>
-                <div>
-                    <ul role="list" class="divide-y divide-gray-200 m-2 p-2">
-                        <li v-for="(comment, index) in postData.comments"
-                            :key="index" class="py-4 flex flex-col">
-                            <div class="text-sm text-slate-400">
-                                Commented by
-                                <span
-                                    class="font-semibold ml-1 text-slate-700">{{
-                                    comment.username
-                                    }}</span>
+                    <div class="w-full">
+                        <div
+                            class="flex flex-col md:flex-row justify-between m-2">
+                            <div>
+                                Posted by
+                                <span class="mx-2 text-slate-700">{{
+                                postData.username
+                                }}</span>
                             </div>
-                            <div class="text-slate-600 m-2 p-2">
-                                {{ comment.content }}
+                            <div v-if="$page.props.auth.auth_check">
+                                <Link :href="
+                                  route('communities.posts.edit', [
+                                    community,
+                                    postData,
+                                  ])
+                                " class="
+                    font-semibold
+                    bg-blue-500
+                    hover:bg-blue-700
+                    rounded-md
+                    text-white
+                    px-4
+                    py-2
+                    mr-2
+                  ">Edit</Link>
+                                <Link :href="
+                                  route('communities.posts.destroy', [
+                                    community,
+                                    postData,
+                                  ])
+                                " class="
+                    font-semibold
+                    bg-red-500
+                    hover:bg-red-700
+                    rounded-md
+                    text-white
+                    px-4
+                    py-2
+                  " method="delete" as="button" type="button">Delete</Link>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="md:p-2 my-2 mt-4"
-                    v-if="$page.props.auth.auth_check">
-                    <form class="max-w-md" @submit.prevent="submit">
-                        <div class="mt-2">
-                            <label for="comment" class="
+                        </div>
+                        <div class="p-2">
+                            <h1 class="font-semibold text-3xl text-black">
+                                {{ postData.title }}
+                            </h1>
+                            <p class="text-slate-700 my-2">{{
+                            postData.description }}</p>
+                            <a :href="postData.url"
+                                class="font-semibold text-blue-500 text-sm hover:text-blue-300">{{
+                                postData.url }}</a>
+                        </div>
+                        <hr />
+                        <div>
+                            <ul role="list"
+                                class="divide-y divide-gray-200 m-2 p-2">
+                                <li v-for="(comment, index) in postData.comments"
+                                    :key="index" class="py-4 flex flex-col">
+                                    <div class="text-sm">
+                                        Commented by
+                                        <span
+                                            class="font-semibold ml-1 text-slate-700">{{
+                                            comment.username
+                                            }}</span>
+                                    </div>
+                                    <div class="text-slate-600 m-2 p-2">
+                                        {{ comment.content }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <div v-if="$page.props.auth.auth_check">
+                            <form class="m-2 p-2 max-w-md"
+                                @submit.prevent="submit">
+                                <div class="mt-2">
+                                    <label for="comment" class="
                       block
                       mb-2
                       text-sm
@@ -93,8 +122,8 @@ const submit = () => {
                       text-gray-900
                       dark:text-gray-400
                     ">Your comment</label>
-                            <textarea v-model="form.content" id="comment"
-                                rows="4" class="
+                                    <textarea v-model="form.content"
+                                        id="comment" rows="4" class="
                       block
                       p-2.5
                       w-full
@@ -110,9 +139,9 @@ const submit = () => {
                       dark:focus:ring-blue-500
                       dark:focus:border-blue-500
                     " placeholder="Your comment..."></textarea>
-                        </div>
-                        <div class="mt-2">
-                            <button class="
+                                </div>
+                                <div class="mt-2">
+                                    <button class="
                       px-4
                       py-2
                       bg-blue-500
@@ -120,18 +149,19 @@ const submit = () => {
                       text-white
                       rounded-md
                     ">
-                                Comment
-                            </button>
+                                        Comment
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-            <div class="w-full md:w-4/12 md:p-2 md:ml-4 mt-4 md:mt-0">
-                <div class="p-2 bg-slate-500 text-white">
-                    <h2>Latest Communities</h2>
-                </div>
-            </div>
+            <!-- <div class="w-full md:w-4/12">
+                <PostList :posts="posts.data" :community="community">
+                    <template #title>Popular Posts</template>
+                </PostList>
+            </div> -->
         </section>
-
     </GuestLayout>
 </template>

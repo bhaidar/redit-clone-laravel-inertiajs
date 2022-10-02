@@ -9,8 +9,7 @@
         dark:bg-gray-800 dark:border-gray-700
       ">
         <div class="mr-3">
-            <!-- <PostVote :post="post" /> -->
-            upvote
+            <PostVote :post="post" />
         </div>
         <div class="w-full">
             <div class="flex mt-1 text-sm">
@@ -75,7 +74,7 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
 import NavLink from "@/Components/NavLink.vue";
-// import PostVote from "./PostVote.vue";
+import PostVote from "./PostVote.vue";
 
 defineProps({
     post: Object,
