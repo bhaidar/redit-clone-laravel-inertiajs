@@ -6,6 +6,8 @@ import PostVote from "@/Components/PostVote.vue";
 import PostList from "@/Components/PostList.vue";
 
 const props = defineProps({
+    can_delete: Boolean,
+    can_update: Boolean,
     community: Object,
     post: Object,
     posts: Object,
@@ -51,14 +53,13 @@ const submit = () => {
                                 }}</span>
                                 {{ post.data.created_at }}
                             </div>
-                            <div
-                                v-if="$page.props.auth.auth_check && postData.is_owner">
+                            <div>
                                 <Link :href="
                                   route('communities.posts.edit', [
                                     community,
                                     postData,
                                   ])
-                                " class="
+                                " v-if="props.can_update" class="
                     font-semibold
                     bg-blue-500
                     hover:bg-blue-700
@@ -81,7 +82,8 @@ const submit = () => {
                     text-white
                     px-4
                     py-2
-                  " method="delete" as="button" type="button">Delete</Link>
+                  " method="delete" v-if="props.can_delete" as="button"
+                                    type="button">Delete</Link>
                             </div>
                         </div>
                         <div class="p-2">

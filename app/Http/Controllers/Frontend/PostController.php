@@ -7,13 +7,14 @@ use App\Http\Resources\PostResource;
 use App\Http\Resources\PostShowResource;
 use App\Models\Community;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class PostController extends Controller
 {
     public function show(Community $community, Post $post)
     {
-        $post = $post->load(
+        $communityPost = $post->load(
             [
                 'user:id,username',
                 'comments:id,user_id,post_id,content',
@@ -25,14 +26,13 @@ class PostController extends Controller
                 },
             ]
         );
-        $post = new PostShowResource($post);
+        $post = new PostShowResource($communityPost);
 
         $posts = PostResource::collection($community->posts()->orderBy('votes', 'desc')->take(6)->get());
 
-        return Inertia::render('Frontend/Posts/Show', compact('community', 'post', 'posts'));
-    }
+        $can_update = Auth::check() ? Auth::user()->can('update', $communityPost) : false;
+        $can_delete = Auth::check() ? Auth::user()->can('delete', $communityPost) : false;
 
-    // $posts = PostResource::collection($community->posts()->orderBy('votes', 'desc')->take(6)->get());
-    // $can_update = Auth::check() ? Auth::user()->can('update', $community_post) : false;
-    // $can_delete = Auth::check() ? Auth::user()->can('delete', $community_post) : false;
+        return Inertia::render('Frontend/Posts/Show', compact('community', 'post', 'posts', 'can_update', 'can_delete'));
+    }
 }
