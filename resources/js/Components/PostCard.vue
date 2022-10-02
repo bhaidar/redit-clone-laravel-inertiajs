@@ -29,7 +29,8 @@ defineProps({
                     r/{{ community }}</NavLink>
                 <div class="ml-2 mt-1 text-slate-400">
                     Posted by
-                    <span>{{ post.username }}</span>
+                    <span class="mx-1 text-slate-700">{{
+                    post.username }}</span>
                     {{ post.created_at }}
                 </div>
             </div>
