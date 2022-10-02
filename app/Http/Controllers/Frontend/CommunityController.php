@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommunityPostResource;
+use App\Http\Resources\CommunityResource;
 use App\Models\Community;
 use Inertia\Inertia;
 
@@ -23,6 +24,8 @@ class CommunityController extends Controller
             ]
         )->withCount('comments')->paginate(2));
 
-        return Inertia::render('Frontend/Communities/Show', compact('community', 'posts'));
+        $communities = CommunityResource::collection(Community::withCount('posts')->orderBy('created_at', 'desc')->take(6)->get());
+
+        return Inertia::render('Frontend/Communities/Show', compact('community', 'posts', 'communities'));
     }
 }
