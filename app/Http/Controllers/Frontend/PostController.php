@@ -12,9 +12,22 @@ class PostController extends Controller
 {
     public function show(Community $community, Post $post)
     {
-        $post = $post->load('user:id,username', 'comments:id,user_id,post_id,content', 'comments.user:id,username');
+        $post = $post->load(
+            [
+                'user:id,username',
+                'comments:id,user_id,post_id,content',
+                'comments.user:id,username',
+                'postVotes' => function ($query) {
+                    $query->where('user_id', auth()->id());
+                },
+            ]
+        );
         $post = new PostShowResource($post);
 
         return Inertia::render('Frontend/Posts/Show', compact('community', 'post'));
     }
+
+    // $posts = PostResource::collection($community->posts()->orderBy('votes', 'desc')->take(6)->get());
+    // $can_update = Auth::check() ? Auth::user()->can('update', $community_post) : false;
+    // $can_delete = Auth::check() ? Auth::user()->can('delete', $community_post) : false;
 }

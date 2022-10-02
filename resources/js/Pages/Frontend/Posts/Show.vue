@@ -47,6 +47,7 @@ const submit = () => {
                                 <span class="mx-2 text-slate-700">{{
                                 postData.username
                                 }}</span>
+                                {{ post.data.created_at }}
                             </div>
                             <div v-if="$page.props.auth.auth_check">
                                 <Link :href="
