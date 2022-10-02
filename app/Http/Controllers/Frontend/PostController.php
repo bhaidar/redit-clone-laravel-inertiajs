@@ -18,7 +18,9 @@ class PostController extends Controller
                 'comments:id,user_id,post_id,content',
                 'comments.user:id,username',
                 'postVotes' => function ($query) {
-                    $query->where('user_id', auth()->id());
+                    $query
+                        ->where('user_id', auth()->id())
+                        ->select('id', 'user_id', 'post_id', 'vote');
                 },
             ]
         );
