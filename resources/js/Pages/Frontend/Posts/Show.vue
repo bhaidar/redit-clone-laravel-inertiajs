@@ -59,7 +59,7 @@ const submit = () => {
                                     community,
                                     postData,
                                   ])
-                                " v-if="props.can_update" class="
+                                " v-if="can_update" class="
                     font-semibold
                     bg-blue-500
                     hover:bg-blue-700
@@ -82,7 +82,7 @@ const submit = () => {
                     text-white
                     px-4
                     py-2
-                  " method="delete" v-if="props.can_delete" as="button"
+                  " method="delete" v-if="can_delete" as="button"
                                     type="button">Delete</Link>
                             </div>
                         </div>

@@ -65,7 +65,8 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        // Post owner or Community owner (moderator) can delete a post
+        return in_array($user->id, [$post->user_id, $post->community->user_id]);
     }
 
     /**
